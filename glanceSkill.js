@@ -114,15 +114,16 @@ function getWelcomeResponse(callback) {
 function searchSpotType(intent, session, callback) {
     // If we wanted to initialize the session to have some attributes we could add those here.
     var sessionAttributes = {};
-
+    var spotType = intent.slots.SpotType.value;
     restClient = new client();
     
     restClient.get(glanceServiceEndpoint + "/spotlist", function(data, response){
         var apiResJson = JSON.parse(data.toString('utf8'));
         var message = apiResJson.message;
-        
-        var numberofSpots = "Five";
-        //var message = "You have " + numberofSpots + " spots ";
+
+        console.log(message);
+
+        var message = "Here are some " + spotType + " spots";
         var cardTitle = message;
         var speechOutput = message;
     
